@@ -1,0 +1,10 @@
+
+---
+- name: "Nvidia game ready drivers"
+  hosts: windows
+  tasks:
+    - name: Install Nvidia game ready drivers
+      win_chocolatey:
+        name:
+          - geforce-game-ready-driver
+        state: present

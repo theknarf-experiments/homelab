@@ -5,7 +5,7 @@
 ansible_user=root
 
 [windows]
-192.168.1.148
+192.168.1.174
 
 [windows:vars]
 ansible_user=Knarf
