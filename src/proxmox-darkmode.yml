@@ -1,0 +1,17 @@
+---
+  - name: Proxmox dark mode
+    hosts: proxmox
+    tasks:
+      - name: Download Proxmox dark mode
+        get_url:
+          url: https://raw.githubusercontent.com/Weilbyte/PVEDiscordDark/master/PVEDiscordDark.sh
+          dest: /tmp/PVEDiscordDark.sh
+          checksum: sha256:48d0cdea78612f08e457eb34316c393d597823c055ee306617b06848c2b32079
+
+      - name: Install Proxmox dark mode
+        shell: bash /tmp/PVEDiscordDark.sh install
+
+      - name: Remove the installer
+        file:
+          path: /tmp/PVEDiscordDark.sh
+          state: absent

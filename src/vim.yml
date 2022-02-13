@@ -1,0 +1,8 @@
+---
+  - name: vim
+    hosts: all
+    tasks:
+      - name: Ensure Vim is installed
+        package:
+          name: vim
+          state: latest
