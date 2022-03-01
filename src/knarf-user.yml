@@ -1,0 +1,52 @@
+---
+  - name: Setup user Knarf
+    hosts: linux
+    tasks:
+      - name: Ensure Zsh & git is installed
+        package:
+          name:
+            - zsh
+            - git
+            - python
+          state: latest
+
+      - name: Setup user Knarf
+        ansible.builtin.user:
+          name: knarf
+          shell: /bin/zsh
+          groups: sudo
+          # If other scripts add the user to a group then we don't want to remove it here
+          append: true
+          # Only update password if the user was newly created
+          update_password: on_create
+          # New users will also have an ssh key
+          generate_ssh_key: yes
+
+      - name: Set authorized keys taken from github
+        ansible.posix.authorized_key:
+          user: knarf
+          state: present
+          key: https://github.com/theknarf.keys
+
+      - name: Clone Configs / Dotfile repo
+        ansible.builtin.git:
+          repo: https://github.com/TheKnarf/configs.git
+          dest: /home/knarf/configs
+          update: no
+        register: configs_git_repo
+        # We want to clone and run this as the user,
+        # that way we wont have to change file permissions afterwards
+        become: yes
+        become_user: knarf
+        become_method: su
+
+      - name: Run configs setup script
+        shell: ./setup
+        args:
+          chdir: /home/knarf/configs
+        when: configs_git_repo.changed
+        # We want to clone and run this as the user,
+        # that way we wont have to change file permissions afterwards
+        become: yes
+        become_user: knarf
+        become_method: su
