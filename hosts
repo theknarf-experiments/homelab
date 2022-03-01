@@ -1,8 +1,18 @@
+[linux:children]
+proxmox
+rpi
+
 [proxmox]
 192.168.1.112
 
 [proxmox:vars]
 ansible_user=root
+
+[rpi]
+rpi.theknarf.com
+
+[rpi:vars]
+ansible_become=true
 
 [windows]
 192.168.1.174

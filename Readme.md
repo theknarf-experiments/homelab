@@ -19,6 +19,8 @@ You may need to install some ansible-galaxy collections, run:
 ansible-galaxy install -r requirements.yml
 ```
 
+If you need to get sudo access you may need to append `--ask-become-pass` to the command you run.
+
 # Windows WinRM
 
 To connect to windows using Ansible you need WinRM working.
