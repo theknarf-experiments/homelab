@@ -14,7 +14,7 @@
           path: "/etc/default/grub"
           backrefs: true
           regexp: '^#?(GRUB_CMDLINE_LINUX_DEFAULT=.*)quiet"$'
-          line: '\1quiet intel_iommu=on"'
+          line: '\1quiet intel_iommu=on iommu=pt pcie_acs_override=downstream,multifunction nofb nomodeset video=vesafb:off,efifb:off"'
         register: iommu_result
 
       - name: Ensure vfio modules are loaded at boot
