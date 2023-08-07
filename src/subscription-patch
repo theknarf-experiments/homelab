@@ -1,0 +1,11 @@
+--- /usr/share/pve-manager/js/pvemanagerlib.js.orig	2023-08-07 09:25:27.470115187 +0200
++++ /usr/share/pve-manager/js/pvemanagerlib.js	2023-08-07 09:25:40.722044211 +0200
+@@ -24738,7 +24738,7 @@
+ 			    me.updateActive(data);
+ 			}
+ 		    } else {
+-			me.updateInactive(data);
++			//me.updateInactive(data);
+ 		    }
+ 		},
+ 	    });

@@ -1,0 +1,10 @@
+---
+  # Originaly inspired by this git repo: https://github.com/andykimpe/postinstall-proxmox/blob/master/patch
+  # but recreated the patch file based on my system
+  - name: Proxmox dark mode
+    hosts: proxmox
+    tasks:
+      - name: Apply patch to remove Proxmox Subscription warning
+        ansible.posix.patch:
+          src: ./subscription-patch
+          dest: /usr/share/pve-manager/js/pvemanagerlib.js
