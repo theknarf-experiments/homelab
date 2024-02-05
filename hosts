@@ -1,26 +1,8 @@
 [linux:children]
-proxmox
 rpi
-
-[proxmox]
-192.168.1.112
-
-[proxmox:vars]
-ansible_user=root
 
 [rpi]
 rpi.theknarf.com
 
 [rpi:vars]
 ansible_become=true
-
-[windows]
-192.168.1.174
-
-[windows:vars]
-ansible_user=Knarf
-ansible_connection=winrm
-ansible_winrm_scheme=http
-ansible_winrm_transport=basic
-anislbe_winrm_server_cert_validation=ignore
-ansible_port=5985
